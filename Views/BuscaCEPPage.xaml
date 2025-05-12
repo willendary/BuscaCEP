@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"  
+            xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"  
+            x:Class="BuscaCEP.Views.BuscaCEPPage"
+             Title="Buscar CEP">
+    <VerticalStackLayout  
+           Padding="30,0"  
+           Spacing="25">
+        <Label  
+               Text="Busca CEP"  
+               Style="{StaticResource Headline}"  
+               SemanticProperties.HeadingLevel="Level1" />
+
+        <Entry 
+                x:Name="entryCep"   
+                Placeholder="Digite o CEP" 
+                Text ="{Binding Cep}"/>
+
+        <Button 
+                x:Name="btBuscar"
+                Command="{Binding BuscarCepCommand}"
+                IsEnabled = "{Binding IsBusy, Converter={StaticResource InverseBooleanConverter}}">
+        </Button>
+
+        <ActivityIndicator 
+                IsRunning="{Binding IsBusy}" 
+                IsVisible="{Binding IsBusy}">
+        </ActivityIndicator>
+        <StackLayout IsVisible = "{Binding Endereco, Converter={StaticResource NullToBooleanConverter}}">
+            <Label   
+                   x:Name="lbLogradouro" 
+                   Text="{Binding Endereco.Logradouro, StringFormat='Logradouro - {0}'}" />
+            <Label  
+                   x:Name="lblComplemento"  
+                   Text="{Binding Endereco.Complemento, StringFormat='Complemento - {0}'}" />
+            <Label  
+                   x:Name="lblunidade"  
+                   Text="{Binding Endereco.Unidade, StringFormat='Unidade - {0}'}" />
+            <Label  
+                   x:Name="lblBairro"  
+                   Text="{Binding Endereco.Bairro, StringFormat='Bairro - {0}'}" />
+            <Label  
+                   x:Name="lblLocalidade"  
+                   Text="{Binding Endereco.Localidade, StringFormat='Localidade - {0}'}" />
+            <Label  
+                   x:Name="lblUF"  
+                   Text="{Binding Endereco.UF, StringFormat='UF - {0}'}" />
+            <Label  
+                   x:Name="lblEstado"  
+                   Text="{Binding Endereco.Estado, StringFormat='Estado - {0}'}" />
+            <Label  
+                   x:Name="lblRegiao"  
+                   Text="{Binding Endereco.Regiao, StringFormat='Regiao - {0}'}" />
+        </StackLayout>
+    </VerticalStackLayout>
+
+</ContentPage>
